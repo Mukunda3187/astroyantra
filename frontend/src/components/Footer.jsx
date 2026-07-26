@@ -1,11 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const SOCIALS = [
-  { label: 'Instagram', href: null },
-  { label: 'Facebook', href: null },
-  { label: 'Twitter/X', href: null },
-  { label: 'LinkedIn', href: null },
-  { label: 'YouTube', href: null },
+  { label: 'YouTube', href: 'https://www.youtube.com/channel/UCHI8_cRMDp4LJJaYkXz5Fbw' },
 ];
 
 export default function Footer() {
@@ -15,7 +11,7 @@ export default function Footer() {
       <div className="container footer-grid">
         <div className="footer-brand">
           <div className="footer-brand-mark">AstroYantra</div>
-          <p className="footer-tagline">Ancient Vedic Wisdom Powered by AI</p>
+          <p className="footer-tagline">Ancient Vedic Wisdom</p>
         </div>
 
         <div className="footer-col">
@@ -58,7 +54,7 @@ export default function Footer() {
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
           <span>© {year} AstroYantra. All Rights Reserved.</span>
-          <span>Made with ❤️ using React, Node.js and Google Gemini AI.</span>
+          <span>Made with using React, Node.js and Google Gemini AI.</span>
         </div>
       </div>
     </footer>
