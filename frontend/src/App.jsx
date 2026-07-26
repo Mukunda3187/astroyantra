@@ -19,12 +19,13 @@ function Header() {
       <div className="container">
         <Link to="/" className="brand">
           <span className="brand-mark">AstroYantra</span>
-          <span className="brand-sub">Ancient Vedic Wisdom, Powered by AI</span>
         </Link>
         <nav className="nav-links">
           <Link to="/" className={isActive('/')}>Your Chart</Link>
           <Link to="/compatibility" className={isActive('/compatibility')}>Compatibility</Link>
-          <Link to="/about" className={isActive('/about')}>About</Link>
+          <Link to="https://www.youtube.com/channel/UCHI8_cRMDp4LJJaYkXz5Fbw" target="_blank" rel="noopener noreferrer">
+            Youtube
+          </Link>
           <Link to="/contact" className={isActive('/contact')}>Contact</Link>
         </nav>
       </div>
