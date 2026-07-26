@@ -10,7 +10,9 @@ const compatibilityRoutes = require('./routes/compatibilityRoutes');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
+app.use(cors({
+     origin: "https://astroyantra-frontend.onrender.com"
+   }));
 app.use(express.json());
 
 app.get('/api/health', (req, res) => {
