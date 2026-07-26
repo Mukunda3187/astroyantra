@@ -1,0 +1,16 @@
+{
+  "name": "AstroYantra — Ancient Vedic Wisdom Powered by AI",
+  "short_name": "AstroYantra",
+  "description": "Real Vedic birth charts, numerology, and AI-generated astrology readings.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a18",
+  "theme_color": "#0a0a18",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
