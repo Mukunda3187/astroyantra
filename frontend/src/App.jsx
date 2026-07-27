@@ -9,14 +9,8 @@ import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import Terms from './pages/Terms.jsx';
 import Disclaimer from './pages/Disclaimer.jsx';
 import Contact from './pages/Contact.jsx';
+import Blog from './pages/Blog.jsx';
 import NotFound from './pages/NotFound.jsx';
-import BlogIndex from './pages/blog/BlogIndex.jsx';
-import WhatIsAVedicBirthChart from './pages/blog/WhatIsAVedicBirthChart.jsx';
-import MoonSignVsSunSign from './pages/blog/MoonSignVsSunSign.jsx';
-import NumerologyBasics from './pages/blog/NumerologyBasics.jsx';
-import CompatibilityMatchingExplained from './pages/blog/CompatibilityMatchingExplained.jsx';
-import CareerAstrologyBasics from './pages/blog/CareerAstrologyBasics.jsx';
-import UnderstandingNakshatras from './pages/blog/UnderstandingNakshatras.jsx';
 
 function Header() {
   const location = useLocation();
@@ -55,13 +49,7 @@ export default function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/blog/BlogIndex" element={<BlogIndex />} />
-          <Route path="/blog/WhatIsAVedicBirthChart" element={<WhatIsAVedicBirthChart />} />
-          <Route path="/blog/MoonSignVsSunSign" element={<MoonSignVsSunSign />} />
-          <Route path="/blog/NumerologyBasics" element={<NumerologyBasics />} />
-          <Route path="/blog/CompatibilityMatchingExplained" element={<CompatibilityMatchingExplained />} />
-          <Route path="/blog/CareerAstrologyBasics" element={<CareerAstrologyBasics />} />
-          <Route path="/blog/UnderstandingNakshatras" element={<UnderstandingNakshatras />} />
+          <Route path="/Blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
