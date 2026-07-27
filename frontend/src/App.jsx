@@ -55,7 +55,6 @@ export default function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
           <Route path="/blog/BlogIndex" element={<BlogIndex />} />
           <Route path="/blog/WhatIsAVedicBirthChart" element={<WhatIsAVedicBirthChart />} />
           <Route path="/blog/MoonSignVsSunSign" element={<MoonSignVsSunSign />} />
@@ -63,6 +62,7 @@ export default function App() {
           <Route path="/blog/CompatibilityMatchingExplained" element={<CompatibilityMatchingExplained />} />
           <Route path="/blog/CareerAstrologyBasics" element={<CareerAstrologyBasics />} />
           <Route path="/blog/UnderstandingNakshatras" element={<UnderstandingNakshatras />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
