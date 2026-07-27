@@ -22,7 +22,7 @@ function Header() {
           <span className="brand-mark">AstroYantra</span>
         </Link>
         <nav className="nav-links">
-          <Link to="/" className={isActive('/')}>Your Chart</Link>
+          <Link to="/" className={isActive('/')}>Birth Chart</Link>
           <Link to="/compatibility" className={isActive('/compatibility')}>Compatibility</Link>
           <Link to="https://www.youtube.com/channel/UCHI8_cRMDp4LJJaYkXz5Fbw" target="_blank" rel="noopener noreferrer">
             Youtube
