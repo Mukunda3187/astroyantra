@@ -9,7 +9,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import Terms from './pages/Terms.jsx';
 import Disclaimer from './pages/Disclaimer.jsx';
 import Contact from './pages/Contact.jsx';
-import Blog from './pages/Blog.jsx';
+import { BlogIndex, BlogPost } from './pages/Blog.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 function Header() {
@@ -49,7 +49,8 @@ export default function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/Blog" element={<Blog />} />
+          <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
