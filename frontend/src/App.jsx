@@ -34,6 +34,7 @@ function Header() {
             Youtube
           </Link>
           <Link to="/contact" className={isActive('/contact')}>Contact</Link>
+          <Link to="/blog" className={isActive('/blog')}>Blog</Link>
         </nav>
       </div>
     </header>
@@ -55,6 +56,13 @@ export default function App() {
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blog/what-is-a-vedic-birth-chart" element={<WhatIsAVedicBirthChart />} />
+          <Route path="/blog/moon-sign-vs-sun-sign" element={<MoonSignVsSunSign />} />
+          <Route path="/blog/numerology-basics" element={<NumerologyBasics />} />
+          <Route path="/blog/compatibility-matching-explained" element={<CompatibilityMatchingExplained />} />
+          <Route path="/blog/career-astrology-basics" element={<CareerAstrologyBasics />} />
+          <Route path="/blog/understanding-nakshatras" element={<UnderstandingNakshatras />} />
         </Routes>
         <Footer />
       </BrowserRouter>
