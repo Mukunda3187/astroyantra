@@ -28,6 +28,7 @@ function Header() {
             Youtube
           </Link>
           <Link to="/contact" className={isActive('/contact')}>Contact</Link>
+          <Link to="/blog" className={isActive('/blog')}>Blog</Link>
         </nav>
       </div>
     </header>
