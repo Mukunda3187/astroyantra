@@ -10,6 +10,13 @@ import Terms from './pages/Terms.jsx';
 import Disclaimer from './pages/Disclaimer.jsx';
 import Contact from './pages/Contact.jsx';
 import NotFound from './pages/NotFound.jsx';
+import BlogIndex from './pages/blog/BlogIndex.jsx';
+import WhatIsAVedicBirthChart from './pages/blog/WhatIsAVedicBirthChart.jsx';
+import MoonSignVsSunSign from './pages/blog/MoonSignVsSunSign.jsx';
+import NumerologyBasics from './pages/blog/NumerologyBasics.jsx';
+import CompatibilityMatchingExplained from './pages/blog/CompatibilityMatchingExplained.jsx';
+import CareerAstrologyBasics from './pages/blog/CareerAstrologyBasics.jsx';
+import UnderstandingNakshatras from './pages/blog/UnderstandingNakshatras.jsx';
 
 function Header() {
   const location = useLocation();
