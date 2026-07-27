@@ -56,8 +56,8 @@ export default function PrivacyPolicy() {
         <div className="panel reading-card">
           <h4>Contact</h4>
           <p>
-            Questions about this policy can be sent to
-            {' '}<a href="mailto:privacy@astroyantra.example.com">privacy@astroyantra.example.com</a>.
+            Questions about this policy can be comment in my youtube channel i will reply that
+            {' '}<a href="https://www.youtube.com/channel/UCHI8_cRMDp4LJJaYkXz5Fbw">YOUTUBE</a>.
           </p>
         </div>
 
