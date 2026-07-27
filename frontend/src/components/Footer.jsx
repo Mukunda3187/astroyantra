@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { BlogIndex, BlogPost } from './pages/Blog.jsx';
 
 const SOCIALS = [
   { label: 'YouTube', href: 'https://www.youtube.com/channel/UCHI8_cRMDp4LJJaYkXz5Fbw' },
@@ -21,7 +20,7 @@ export default function Footer() {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/">Birth Chart</Link></li>
             <li><Link to="/compatibility">Compatibility</Link></li>
-            <li><Link to="/blog" className={isActive('/blog')}>Blog</Link></li>
+            <li><Link to="/blog">Blog</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
