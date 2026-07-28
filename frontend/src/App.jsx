@@ -1,3 +1,4 @@
+import logo from './assets/logo.png';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 import Footer from './components/Footer.jsx';
@@ -18,8 +19,9 @@ function Header() {
   return (
     <header className="site-header">
       <div className="container">
-        <Link to="/" className="brand">
-          <span className="brand-mark">AstroYantra</span>
+        <Link to="/" className="brand" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <img src={logo} alt="AstroYantra logo" style={{ height: '32px', width: '32px', objectFit: 'contain' }} />
+        <span className="brand-mark">AstroYantra</span>
         </Link>
         <nav className="nav-links">
           <Link to="/" className={isActive('/')}>Birth Chart</Link>
