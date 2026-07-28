@@ -83,11 +83,10 @@ export default function Home() {
             <div className="eyebrow" style={{ marginBottom: '1rem' }}>Reading the stars…</div>
             <div className="loading-spinner" />
             <p className="muted" style={{ marginTop: '1rem' }}>
-      Calculating... This
-      usually takes 15–30 seconds.
-    </p>
-  </div>
-)}
+              This usually takes 15–30 seconds.
+            </p>
+           </div>
+         )}
       </div>
     </div>
   );
