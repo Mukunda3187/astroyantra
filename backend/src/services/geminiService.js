@@ -282,8 +282,16 @@ async function generateReading(profile) {
 }
 
 async function generateReadingStream(profile, onChunk) {
-  const raw = await callGeminiStream(READING_SYSTEM_PROMPT, buildReadingPrompt(profile), 6000, onChunk);
-  return safeParseJson(raw);
+  try {
+    const raw = await callGeminiStream(READING_SYSTEM_PROMPT, buildReadingPrompt(profile), 6000, onChunk);
+    return safeParseJson(raw);
+  } catch (e) {
+    // Streaming got cut off (network hiccup) — silently retry once via the
+    // more reliable non-streaming call before giving up.
+    console.warn('Streamed reading failed, retrying non-streamed:', e.message);
+    const raw = await callGemini(READING_SYSTEM_PROMPT, buildReadingPrompt(profile), 6000);
+    return safeParseJson(raw);
+  }
 }
 
 async function generateCompatibilityReading(personA, personB, gunaResult) {
@@ -295,7 +303,16 @@ async function generateCompatibilityReadingStream(personA, personB, gunaResult, 
   const raw = await callGeminiStream(COMPAT_SYSTEM_PROMPT, buildCompatPrompt(personA, personB, gunaResult), 4000, onChunk);
   return safeParseJson(raw);
 }
-
+async function generateCompatibilityReadingStream(personA, personB, gunaResult, onChunk) {
+  try {
+    const raw = await callGeminiStream(COMPAT_SYSTEM_PROMPT, buildCompatPrompt(personA, personB, gunaResult), 4000, onChunk);
+    return safeParseJson(raw);
+  } catch (e) {
+    console.warn('Streamed compatibility reading failed, retrying non-streamed:', e.message);
+    const raw = await callGemini(COMPAT_SYSTEM_PROMPT, buildCompatPrompt(personA, personB, gunaResult), 4000);
+    return safeParseJson(raw);
+  }
+}
 module.exports = {
   generateReading,
   generateReadingStream,
