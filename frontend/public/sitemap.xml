@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://astroyantra.example.com/</loc>
+    <loc>https://astroyantra-frontend.onrender.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://astroyantra.example.com/compatibility</loc>
+    <loc>https://astroyantra-frontend.onrender.com/compatibility</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://astroyantra.example.com/about</loc>
+    <loc>https://astroyantra-frontend.onrender.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://astroyantra.example.com/contact</loc>
+    <loc>https://astroyantra-frontend.onrender.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://astroyantra.example.com/privacy-policy</loc>
+    <loc>https://astroyantra-frontend.onrender.com/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://astroyantra.example.com/terms</loc>
+    <loc>https://astroyantra-frontend.onrender.com/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://astroyantra.example.com/disclaimer</loc>
+    <loc>https://astroyantra-frontend.onrender.com/disclaimer</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
