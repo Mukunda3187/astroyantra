@@ -29,7 +29,7 @@ export default function PrivacyPolicy() {
           <h4>How We Process Your Input</h4>
           <p>
             Your birth details are sent to our backend server to compute your chart, and the
-            computed chart facts (not your raw personal details) are sent to Google's Gemini API
+            computed chart facts (not your raw personal details) are sent to API models
             to generate the written reading. Your birth-details form data is not permanently
             stored on our servers; results are held only in your browser session unless you
             choose to save or share them yourself.
