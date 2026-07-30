@@ -1,4 +1,4 @@
-.......const { buildChart } = require('./ephemeris');
+const { buildChart } = require('./ephemeris');
 const { computeNumerology } = require('./numerology');
 
 /**
