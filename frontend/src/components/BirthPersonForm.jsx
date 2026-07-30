@@ -49,7 +49,7 @@ export default function BirthPersonForm({ value, onChange, idPrefix = 'p' }) {
     <div className="birth-form">
       <div className="field">
         <label htmlFor={`${idPrefix}-name`}>Full name</label>
-        <input id={`${idPrefix}-name`} type="text" placeholder="e.g. Ananya Sharma"
+        <input id={`${idPrefix}-name`} type="text" placeholder="Enter Your Name"
           value={value.name || ''} onChange={(e) => set('name', e.target.value)} />
       </div>
 
