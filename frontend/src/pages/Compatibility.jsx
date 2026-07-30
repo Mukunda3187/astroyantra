@@ -48,11 +48,7 @@ export default function Compatibility() {
       <div className="container">
         <div className="eyebrow">Relationship Compatibility</div>
         <h1 style={{ fontSize: '2.2rem', marginTop: '0.5rem', marginBottom: '0.6rem' }}>Two charts, one story</h1>
-        <p className="muted" style={{ maxWidth: '60ch', marginBottom: '2.5rem', fontFamily: 'var(--font-serif)', fontSize: '1.1rem' }}>
-          Enter both birth details for a full Ashtakoot Guna Milan score and a Claude-written
-          analysis of your emotional, communication, romantic, and long-term compatibility.
-        </p>
-
+        
         <form onSubmit={handleSubmit}>
           <div className="two-col">
             <div className="panel form-panel">
