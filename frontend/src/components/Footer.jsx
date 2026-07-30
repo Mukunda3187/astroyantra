@@ -53,7 +53,6 @@ export default function Footer() {
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
           <span>© {year} AstroYantra. All Rights Reserved.</span>
-          <span>Made with using React, Node.js and Google Gemini AI.</span>
         </div>
       </div>
     </footer>
