@@ -57,11 +57,6 @@ export default function Home() {
           <h1 style={{ fontSize: '2.1rem', marginTop: '0.5rem', lineHeight: 1.15 }}>
             Your birth chart, read in plain language.
           </h1>
-          <p className="muted" style={{ marginTop: '0.7rem', fontFamily: 'var(--font-serif)', fontSize: '1.08rem', maxWidth: '60ch' }}>
-            Enter your name, birth date, time, and place. AstroYantra calculates your Mulank, Bhagyank,
-            and the sidereal position of every planet — then turns it into a reading of your
-            personality, love life, career, and path to success.
-          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="panel form-panel">
