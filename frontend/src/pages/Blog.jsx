@@ -291,10 +291,6 @@ export function BlogIndex() {
         <h1 style={{ fontSize: '2rem', marginTop: '0.5rem', marginBottom: '1.5rem' }}>
           AstroYantra Blog
         </h1>
-        <p style={{ marginBottom: '2rem' }}>
-          Plain-language explainers on Vedic astrology and numerology concepts referenced
-          throughout your reading — no jargon, no fear-based predictions.
-        </p>
 
         {Object.entries(posts).map(([slug, post]) => (
           <div className="panel reading-card" key={slug} style={{ marginBottom: '1rem' }}>
