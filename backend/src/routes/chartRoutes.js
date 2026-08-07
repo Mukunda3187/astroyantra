@@ -1,6 +1,6 @@
 const express = require('express');
 const { buildProfile } = require('../astro/chartBuilder');
-const { generateReading, generateReadingStream } = require('../services/geminiService');
+const { generateReading, generateReadingStream, askChartQuestion } = require('../services/geminiService');
 
 const router = express.Router();
 
@@ -93,5 +93,17 @@ router.post('/stream', async (req, res) => {
     res.end();
   }
 });
-
+router.post('/chat', async (req, res) => {
+  try {
+    const { profile, reading, question, history } = req.body;
+    if (!profile || !question) {
+      return res.status(400).json({ error: 'profile and question are required' });
+    }
+    const answer = await askChartQuestion(profile, reading, question, history);
+    res.json({ answer });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: e.message || 'Failed to answer question' });
+  }
+});
 module.exports = router;
