@@ -207,42 +207,6 @@ exact shape:
     { "title": "Lifestyle Practice", "content": "..." }
   ]
 }`;
-
-function buildReadingPrompt(profile) {
-  const { name, numerology, chart } = profile;
-  const planetLines = chart.planets
-    .map((p) => `${p.name}: ${p.sign} (house ${p.house}), nakshatra ${p.nakshatra.name}${p.retrograde ? ', retrograde' : ''}`)
-    .join('\n');
-
-  return `Person: ${name}
-Mulank (root number): ${numerology.mulank} — ruler ${numerology.mulankInfo.ruler}
-Bhagyank (destiny number): ${numerology.bhagyank} — ruler ${numerology.bhagyankInfo.ruler}
-Ascendant (Lagna): ${chart.ascendant.sign} (${chart.ascendant.signSanskrit}), nakshatra ${chart.ascendant.nakshatra.name}
-Moon sign (Rashi): ${chart.moonSign} (${chart.moonSignSanskrit}), nakshatra ${chart.moonNakshatra.name}
-Ruling planet (nakshatra lord): ${chart.rulingPlanet}
-Guna: ${chart.guna}
-Western tropical sun sign: ${chart.westernZodiac}
-
-Planetary placements (whole-sign houses):
-${planetLines}
-
-Write the JSON reading now.`;
-}
-
-const COMPAT_SYSTEM_PROMPT = `You are Pundalik, a warm and insightful Vedic astrologer.
-You are given two people's precomputed chart facts and an accurate Ashtakoot Guna Milan score
-(out of 36) with its breakdown. Do NOT invent or contradict these facts. Write a balanced,
-constructive compatibility analysis — mention real strengths and real friction points, and avoid
-fatalistic language. Respond ONLY with a JSON object (no markdown fences, no preamble):
-{
-  "overview": "2 paragraphs summarizing the match",
-  "emotional": "1-2 paragraphs on emotional/moon-sign compatibility",
-  "communication": "1-2 paragraphs on communication & mental compatibility",
-  "romance_intimacy": "1-2 paragraphs on romantic/physical chemistry",
-  "career_finances": "1-2 paragraphs on shared ambitions, money compatibility",
-  "long_term": "1-2 paragraphs on long-term prospects, family life, what to work on",
-  "advice": "1 short paragraph of practical, constructive advice for the couple"
-}`;
 // --- Chat (follow-up questions about an already-generated chart/reading) ---
 // This uses plain text output (not JSON) since answers are conversational.
 
@@ -314,6 +278,42 @@ User's new question: ${question}
 Answer in simple, plain English using the context above.`;
   return callGeminiText(CHAT_SYSTEM_PROMPT, prompt, 600);
 }
+function buildReadingPrompt(profile) {
+  const { name, numerology, chart } = profile;
+  const planetLines = chart.planets
+    .map((p) => `${p.name}: ${p.sign} (house ${p.house}), nakshatra ${p.nakshatra.name}${p.retrograde ? ', retrograde' : ''}`)
+    .join('\n');
+
+  return `Person: ${name}
+Mulank (root number): ${numerology.mulank} — ruler ${numerology.mulankInfo.ruler}
+Bhagyank (destiny number): ${numerology.bhagyank} — ruler ${numerology.bhagyankInfo.ruler}
+Ascendant (Lagna): ${chart.ascendant.sign} (${chart.ascendant.signSanskrit}), nakshatra ${chart.ascendant.nakshatra.name}
+Moon sign (Rashi): ${chart.moonSign} (${chart.moonSignSanskrit}), nakshatra ${chart.moonNakshatra.name}
+Ruling planet (nakshatra lord): ${chart.rulingPlanet}
+Guna: ${chart.guna}
+Western tropical sun sign: ${chart.westernZodiac}
+
+Planetary placements (whole-sign houses):
+${planetLines}
+
+Write the JSON reading now.`;
+}
+
+const COMPAT_SYSTEM_PROMPT = `You are Pundalik, a warm and insightful Vedic astrologer.
+You are given two people's precomputed chart facts and an accurate Ashtakoot Guna Milan score
+(out of 36) with its breakdown. Do NOT invent or contradict these facts. Write a balanced,
+constructive compatibility analysis — mention real strengths and real friction points, and avoid
+fatalistic language. Respond ONLY with a JSON object (no markdown fences, no preamble):
+{
+  "overview": "2 paragraphs summarizing the match",
+  "emotional": "1-2 paragraphs on emotional/moon-sign compatibility",
+  "communication": "1-2 paragraphs on communication & mental compatibility",
+  "romance_intimacy": "1-2 paragraphs on romantic/physical chemistry",
+  "career_finances": "1-2 paragraphs on shared ambitions, money compatibility",
+  "long_term": "1-2 paragraphs on long-term prospects, family life, what to work on",
+  "advice": "1 short paragraph of practical, constructive advice for the couple"
+}`;
+
 
 async function askCompatibilityQuestion(profileA, profileB, guna, reading, question, history) {
   const prompt = `Compatibility context:
