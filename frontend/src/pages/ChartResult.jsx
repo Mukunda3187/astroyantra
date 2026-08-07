@@ -5,6 +5,8 @@ import PlanetTable from '../components/PlanetTable.jsx';
 import CardSection from '../components/CardSection.jsx';
 import TagList from '../components/TagList.jsx';
 import CosmicProfileTable from '../components/CosmicProfileTable.jsx';
+import ChatBox from '../components/ChatBox.jsx';
+import { askChartQuestion } from '../lib/api.js';
 
 const TABS = [
   { key: 'overview', label: 'Overview' },
@@ -114,7 +116,18 @@ export default function ChartResult() {
             <p className="muted">The AI reading isn't available — see the note above.</p>
           )}
         </div>
+       {reading && (
+          <div style={{ marginTop: '2.5rem' }}>
+            <ChatBox
+              suggestions={['What does my ascendant mean?', 'What career suits me best?', 'How can I improve my finances?']}
+              onAsk={(question, history) => askChartQuestion(profile, reading, question, history).then((r) => r.answer)}
+            />
+          </div>
+        )}
 
+        <div style={{ marginTop: '2.5rem' }}>
+          <button className="btn-secondary" onClick={() => navigate('/')}>New chart</button>
+        </div>
       </div>
     </div>
   );
