@@ -124,10 +124,6 @@ export default function ChartResult() {
             />
           </div>
         )}
-
-        <div style={{ marginTop: '2.5rem' }}>
-          <button className="btn-secondary" onClick={() => navigate('/')}>New chart</button>
-        </div>
       </div>
     </div>
   );
