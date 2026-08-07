@@ -318,4 +318,6 @@ module.exports = {
   generateReadingStream,
   generateCompatibilityReading,
   generateCompatibilityReadingStream,
+  askChartQuestion,
+  askCompatibilityQuestion,
 };
