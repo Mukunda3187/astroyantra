@@ -3,8 +3,8 @@ import BirthPersonForm from '../components/BirthPersonForm.jsx';
 import KundliChart from '../components/KundliChart.jsx';
 import GunaMilanBreakdown from '../components/GunaMilanBreakdown.jsx';
 import ReadingTabs from '../components/ReadingTabs.jsx';
-import { getCompatibility } from '../lib/api.js';
-
+import ChatBox from '../components/ChatBox.jsx';
+import { getCompatibility, askCompatibilityQuestion } from '../lib/api.js';
 const COMPAT_TABS = [
   { key: 'overview', label: 'Overview' },
   { key: 'emotional', label: 'Emotional' },
