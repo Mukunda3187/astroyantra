@@ -92,6 +92,17 @@ export default function Compatibility() {
                 was still computed correctly.
               </div>
             )}
+
+            {result.reading && (
+              <div style={{ marginTop: '2.5rem' }}>
+                <ChatBox
+                  suggestions={['Are we a good match long-term?', 'What should we watch out for?', 'How can we communicate better?']}
+                  onAsk={(question, history) =>
+                    askCompatibilityQuestion(result.profileA, result.profileB, result.guna, result.reading, question, history).then((r) => r.answer)
+                  }
+                />
+              </div>
+            )}
           </div>
         )}
       </div>
