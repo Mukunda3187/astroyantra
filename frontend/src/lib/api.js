@@ -84,7 +84,13 @@ export async function streamChart(payload, { onProfile, onChunk, onDone, onError
 export function getCompatibility(personA, personB) {
   return postJson('/api/compatibility', { personA, personB });
 }
+export function askChartQuestion(profile, reading, question, history) {
+  return postJson('/api/chart/chat', { profile, reading, question, history });
+}
 
+export function askCompatibilityQuestion(profileA, profileB, guna, reading, question, history) {
+  return postJson('/api/compatibility/chat', { profileA, profileB, guna, reading, question, history });
+}
 /**
  * Free geocoding via OpenStreetMap Nominatim (no API key required).
  * Please be considerate of Nominatim's usage policy for production traffic.

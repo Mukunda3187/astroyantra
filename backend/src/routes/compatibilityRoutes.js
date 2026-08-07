@@ -1,7 +1,7 @@
 const express = require('express');
 const { buildProfile } = require('../astro/chartBuilder');
 const { gunaMilan } = require('../astro/compatibility');
-const { generateCompatibilityReading } = require('../services/geminiService');
+const { generateCompatibilityReading, askCompatibilityQuestion } = require('../services/geminiService');
 
 const router = express.Router();
 
@@ -47,5 +47,17 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: e.message || 'Failed to compute compatibility' });
   }
 });
-
+router.post('/chat', async (req, res) => {
+  try {
+    const { profileA, profileB, guna, reading, question, history } = req.body;
+    if (!profileA || !profileB || !guna || !question) {
+      return res.status(400).json({ error: 'profileA, profileB, guna and question are required' });
+    }
+    const answer = await askCompatibilityQuestion(profileA, profileB, guna, reading, question, history);
+    res.json({ answer });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: e.message || 'Failed to answer question' });
+  }
+});
 module.exports = router;

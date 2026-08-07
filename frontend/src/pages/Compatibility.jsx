@@ -3,8 +3,8 @@ import BirthPersonForm from '../components/BirthPersonForm.jsx';
 import KundliChart from '../components/KundliChart.jsx';
 import GunaMilanBreakdown from '../components/GunaMilanBreakdown.jsx';
 import ReadingTabs from '../components/ReadingTabs.jsx';
-import { getCompatibility } from '../lib/api.js';
-
+import ChatBox from '../components/ChatBox.jsx';
+import { getCompatibility, askCompatibilityQuestion } from '../lib/api.js';
 const COMPAT_TABS = [
   { key: 'overview', label: 'Overview' },
   { key: 'emotional', label: 'Emotional' },
@@ -90,6 +90,17 @@ export default function Compatibility() {
               <div className="error-box">
                 Could not generate the AI analysis: {result.readingError}. The Guna Milan score above
                 was still computed correctly.
+              </div>
+            )}
+
+            {result.reading && (
+              <div style={{ marginTop: '2.5rem' }}>
+                <ChatBox
+                  suggestions={['Are we a good match long-term?', 'What should we watch out for?', 'How can we communicate better?']}
+                  onAsk={(question, history) =>
+                    askCompatibilityQuestion(result.profileA, result.profileB, result.guna, result.reading, question, history).then((r) => r.answer)
+                  }
+                />
               </div>
             )}
           </div>

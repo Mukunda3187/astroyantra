@@ -207,7 +207,77 @@ exact shape:
     { "title": "Lifestyle Practice", "content": "..." }
   ]
 }`;
+// --- Chat (follow-up questions about an already-generated chart/reading) ---
+// This uses plain text output (not JSON) since answers are conversational.
 
+function genConfigText(maxOutputTokens) {
+  return {
+    maxOutputTokens,
+    temperature: 0.7,
+    thinkingConfig: { thinkingBudget: 0 },
+  };
+}
+
+async function callGeminiText(systemPrompt, userPrompt, maxOutputTokens = 700) {
+  const apiKey = requireApiKey();
+  let response;
+  try {
+    response = await axios.post(
+      `${BASE_URL}:generateContent`,
+      {
+        systemInstruction: { parts: [{ text: systemPrompt }] },
+        contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
+        generationConfig: genConfigText(maxOutputTokens),
+      },
+      {
+        headers: { 'x-goog-api-key': apiKey, 'content-type': 'application/json' },
+        timeout: 60000,
+      }
+    );
+  } catch (err) {
+    if (err.response) {
+      const googleMessage = err.response.data?.error?.message || JSON.stringify(err.response.data);
+      throw new Error(`Gemini API error (${err.response.status}): ${googleMessage}`);
+    }
+    throw err;
+  }
+
+  const candidate = response.data.candidates && response.data.candidates[0];
+  if (!candidate) throw new Error('Gemini returned no candidates');
+
+  const parts = (candidate.content && candidate.content.parts) || [];
+  const text = parts.map((p) => p.text || '').join('\n').trim();
+  if (!text) throw new Error('Gemini returned an empty response');
+  return text;
+}
+
+const CHAT_SYSTEM_PROMPT = `You are a friendly Vedic astrology assistant answering a user's
+follow-up questions about their own birth chart or compatibility reading. Always answer in
+simple, everyday English — no jargon dumps, no JSON. Be warm, clear, and concise (usually
+3-6 sentences, longer only if the question truly needs it). Base your answer on the chart data
+and reading provided as context. Do not give medical, legal, or financial advice — gently
+suggest a qualified professional for those. This is for entertainment and self-reflection.`;
+
+function formatHistory(history) {
+  return (history || [])
+    .slice(-6)
+    .map((h) => `${h.role === 'user' ? 'User' : 'Astrologer'}: ${h.text}`)
+    .join('\n');
+}
+
+async function askChartQuestion(profile, reading, question, history) {
+  const { name, chart, numerology } = profile;
+  const prompt = `Chart context for ${name}:
+Moon Sign: ${chart.moonSign} | Ascendant: ${chart.ascendant.sign} | Nakshatra: ${chart.moonNakshatra.name}
+Mulank: ${numerology.mulank} | Bhagyank: ${numerology.bhagyank}
+Reading (for reference): ${JSON.stringify(reading || {}).slice(0, 4000)}
+
+${formatHistory(history) ? `Conversation so far:\n${formatHistory(history)}\n` : ''}
+User's new question: ${question}
+
+Answer in simple, plain English using the context above.`;
+  return callGeminiText(CHAT_SYSTEM_PROMPT, prompt, 600);
+}
 function buildReadingPrompt(profile) {
   const { name, numerology, chart } = profile;
   const planetLines = chart.planets
@@ -244,6 +314,20 @@ fatalistic language. Respond ONLY with a JSON object (no markdown fences, no pre
   "advice": "1 short paragraph of practical, constructive advice for the couple"
 }`;
 
+
+async function askCompatibilityQuestion(profileA, profileB, guna, reading, question, history) {
+  const prompt = `Compatibility context:
+${profileA.name} — Moon Sign: ${profileA.chart.moonSign}, Ascendant: ${profileA.chart.ascendant.sign}
+${profileB.name} — Moon Sign: ${profileB.chart.moonSign}, Ascendant: ${profileB.chart.ascendant.sign}
+Guna Milan Score: ${guna.total} / ${guna.maxTotal}
+Reading (for reference): ${JSON.stringify(reading || {}).slice(0, 4000)}
+
+${formatHistory(history) ? `Conversation so far:\n${formatHistory(history)}\n` : ''}
+User's new question: ${question}
+
+Answer in simple, plain English using the context above.`;
+  return callGeminiText(CHAT_SYSTEM_PROMPT, prompt, 600);
+}
 function buildCompatPrompt(personA, personB, gunaResult) {
   const factorLines = gunaResult.factors.map((f) => `${f.label}: ${f.score}/${f.max}`).join('\n');
   return `Person A: ${personA.name}
@@ -318,4 +402,6 @@ module.exports = {
   generateReadingStream,
   generateCompatibilityReading,
   generateCompatibilityReadingStream,
+  askChartQuestion,
+  askCompatibilityQuestion,
 };
